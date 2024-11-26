@@ -14,11 +14,11 @@ public class LoanCalc {
 		int n = Integer.parseInt(args[2]);
 		System.out.println("Loan = " + loan + ", interest rate = " + rate + "%, periods = " + n);
 
-		System.out.println((double) endBalance(loan, rate, n, 10000));
+		// System.out.println((double) endBalance(loan, rate, n, 10000));
 		// Computes the periodical payment using brute force search
 		System.out.print("\nPeriodical payment, using brute force: ");
 		System.out.println((int) bruteForceSolver(loan, rate, n, epsilon));
-		System.out.println("number of iterations: " + iterationCounter);
+		System.out.println("number of iterations1: " + iterationCounter);
 
 		// Computes the periodical payment using bisection search
 		System.out.print("\nPeriodical payment, using bi-section search: ");
@@ -27,13 +27,6 @@ public class LoanCalc {
 	
 	}
 
-// 	Loan:	100000
-// Interest rate:	5
-// Periods:	10
-// Periodical payment:	10,0000
-// (100,000 – 10,000) * 1.05 = 94,500.
-// (94,500 – 10,000) * 1.05 = 88,725.
-
 
 // Computes the ending balance of a loan, given the loan amount, the periodical
 // interest rate (as a percentage), the number of periods (n), and the periodical payment.
@@ -41,7 +34,7 @@ private static double endBalance(double loan, double rate, int n, double payment
     // Convert interest rate to a multiplier
     rate = rate / 100 + 1;
     double balance = loan;
-
+	
     for (int i = 1; i <= n; i++) {
 
         balance = (balance - payment) * rate;
@@ -58,7 +51,7 @@ private static double endBalance(double loan, double rate, int n, double payment
 		rate = rate / 100 + 1; 
 		double g = loan / n;  
 		double balance;
-	
+	    iterationCounter = 0;
 		while (true) {
 			balance = loan; 
 	
@@ -66,15 +59,12 @@ private static double endBalance(double loan, double rate, int n, double payment
 			for (int i = 1; i <= n; i++) {
 				balance = (balance - g) * rate;
 			}
-	
-	
+			iterationCounter++;
 			if (Math.abs(balance) <= epsilon) {
 				break;
 			}
-	
-	
-
 			g += epsilon;
+	
 		}
 	
 		return g; 

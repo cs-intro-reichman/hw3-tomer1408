@@ -6,7 +6,7 @@ public class Anagram {
 		System.out.println(isAnagram("William Shakespeare","I am a weakish speller")); // true
 		System.out.println(isAnagram("Madam Curie","Radium came")); // true
 		System.out.println(isAnagram("Tom Marvolo Riddle","I am Lord Voldemort")); // true
-
+	
 		// Tests the preProcess function.
 		System.out.println(preProcess("What? No way!!!"));
 		
@@ -32,14 +32,35 @@ public class Anagram {
 		return false;
 	}
 	   
+
+		
 	// Returns a preprocessed version of the given string: all the letter characters are converted
 	// to lower-case, and all the other characters are deleted, except for spaces, which are left
 	// as is. For example, the string "What? No way!" becomes "whatnoway"
 	public static String preProcess(String str) {
-		// Replace the following statement with your code
-		return "";
-	} 
-	   
+		String preprocessedVersion = "";
+		int i = 0;
+	
+		while (i < str.length()) {
+			char ch = str.charAt(i);
+	
+			if (ch >= 97 && ch <= 122) {
+				preprocessedVersion = preprocessedVersion + ch;
+	
+	
+			} else if (ch >= 65 && ch <= 90) {
+				preprocessedVersion = preprocessedVersion + (char) (ch + 32); 
+
+			}
+			i++;
+		}
+	
+		return preprocessedVersion;
+	}
+
+	
+	
+
 	// Returns a random anagram of the given string. The random anagram consists of the same
 	// characters as the given string, re-arranged in a random order. 
 	public static String randomAnagram(String str) {

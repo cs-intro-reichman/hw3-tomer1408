@@ -55,7 +55,6 @@ private static double endBalance(double loan, double rate, int n, double payment
 		while (true) {
 			balance = loan; 
 	
-
 			for (int i = 1; i <= n; i++) {
 				balance = (balance - g) * rate;
 			}
@@ -76,8 +75,37 @@ private static double endBalance(double loan, double rate, int n, double payment
 	// Given: the sum of the loan, the periodical interest rate (as a percentage),
 	// the number of periods (n), and epsilon, the approximation's accuracy
 	// Side effect: modifies the class variable iterationCounter.
-    public static double bisectionSolver(double loan, double rate, int n, double epsilon) {  
-        // Replace the following statement with your code
-		return 0;
-    }
-}
+	public static double bisectionSolver(double loan, double rate, int n, double epsilon) {  
+		rate = rate / 100 + 1; 
+		double L = loan / n;  
+		double H = loan;     
+		double g = (L + H) / 2; 
+		double balance;
+	    iterationCounter = 0; 
+	
+		
+		while (H - L > epsilon) {
+			balance = loan; 
+	
+			for (int i = 1; i <= n; i++) {
+				balance = (balance - g) * rate;
+			}
+	
+			iterationCounter++; 
+	
+
+			if (Math.abs(balance) <= epsilon) {
+				break;
+			}
+	
+	
+			if (balance > 0) {
+				L = g; 
+			} else {
+				H = g;
+			}
+			g = (L + H) / 2;
+		}
+		return g; 
+	
+	};}

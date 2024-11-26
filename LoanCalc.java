@@ -50,7 +50,7 @@ public static double bruteForceSolver(double loan, double rate, int n, double ep
 		balance = endBalance(loan, rate, n, g); 
 		//System.out.print(balance);
 		iterationCounter++;
-		if (Math.abs(balance) <= epsilon) {
+		if (balance <= epsilon) {
 			break;
 		}
 		g += epsilon;
@@ -72,7 +72,7 @@ public static double bisectionSolver(double loan, double rate, int n, double eps
 
 		iterationCounter++;
 
-		if (Math.abs(balance) <= epsilon) {
+		if (balance <= epsilon) {
 			break;
 		}
 

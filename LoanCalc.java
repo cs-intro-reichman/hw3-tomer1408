@@ -57,22 +57,23 @@ private static double endBalance(double loan, double rate, int n, double payment
 	public static double bruteForceSolver(double loan, double rate, int n, double epsilon) {
 		rate = rate / 100 + 1; 
 		double g = loan / n;  
-		double balance = loan;
+		double balance;
 	
-	
-		while (Math.abs(balance) > epsilon) {
+		while (true) {
 			balance = loan; 
 	
-		
+
 			for (int i = 1; i <= n; i++) {
 				balance = (balance - g) * rate;
 			}
 	
-			if (g > loan) {
-				return -1;
+	
+			if (Math.abs(balance) <= epsilon) {
+				break;
 			}
 	
-		
+	
+
 			g += epsilon;
 		}
 	

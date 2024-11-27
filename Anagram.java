@@ -67,7 +67,6 @@ public class Anagram {
 			if (ch >= 97 && ch <= 122) {
 				preprocessedVersion = preprocessedVersion + ch;
 	
-	
 			} else if (ch >= 65 && ch <= 90) {
 				preprocessedVersion = preprocessedVersion + (char) (ch + 32); 
 
@@ -84,7 +83,15 @@ public class Anagram {
 	// Returns a random anagram of the given string. The random anagram consists of the same
 	// characters as the given string, re-arranged in a random order. 
 	public static String randomAnagram(String str) {
-		// Replace the following statement with your code
-		return "";
+		preProcess(str);
+		String randomString = "";
+		while (str.length() > 0){
+			int index = (int) (Math.random() * (str.length()));
+			char selectedChar = str.charAt(index);
+			str = str.substring(0, index) + str.substring(index + 1);
+			randomString = randomString + selectedChar;
+		}
+		return randomString;
 	}
+
 }

@@ -27,56 +27,72 @@ public class Anagram {
 	}  
 
 
-	public static boolean isAnagram(String str1, String str2) {
-
-		String newString1 = preProcess(str1).replaceAll(" ", "");
-		String newString2 = preProcess(str2).replaceAll(" ", "");
-
-		if (newString1.length() != newString2.length()) {
-			return false;
-		}
-	
-		for (int i = 0; i < newString1.length(); i++) {
-			boolean foundMatch = false;
-			for (int j = 0; j < newString2.length(); j++) {
-				if (newString1.charAt(i) == newString2.charAt(j)) {
-			
-					newString2 = newString2.substring(0, j) + ' ' + newString2.substring(j + 1);
-					foundMatch = true;
-					break;
-				}
-			}
-			if (!foundMatch) {
-				return false;
-			}
-		}
-	
-		return true;
-	}
-	// // Returns true if the two given strings are anagrams, false otherwise.
 	// public static boolean isAnagram(String str1, String str2) {
-	// 	String newString1 = preProcess(str1);
-	// 	String newString2 = preProcess(str2);
-	// 	if(newString1.length() != newString2.length()){
+
+	// 	String newString1 = preProcess(str1).replaceAll(" ", "");
+	// 	String newString2 = preProcess(str2).replaceAll(" ", "");
+
+	// 	if (newString1.length() != newString2.length()) {
 	// 		return false;
 	// 	}
-		
+	
 	// 	for (int i = 0; i < newString1.length(); i++) {
 	// 		boolean foundMatch = false;
-	// 		for (int j = 0; j < newString1.length(); j++) {
-	// 			if(newString1.charAt(i)==newString2.charAt(j)){
-	// 				newString2.replace(newString2.charAt(j), ' ');
+	// 		for (int j = 0; j < newString2.length(); j++) {
+	// 			if (newString1.charAt(i) == newString2.charAt(j)) {
+			
+	// 				newString2 = newString2.substring(0, j) + ' ' + newString2.substring(j + 1);
 	// 				foundMatch = true;
 	// 				break;
 	// 			}
 	// 		}
 	// 		if (!foundMatch) {
-	// 			return false; 
+	// 			return false;
 	// 		}
 	// 	}
-
+	
 	// 	return true;
 	// }
+
+	// Returns true if the two given strings are anagrams, false otherwise.
+	public static boolean isAnagram(String str1, String str2) {
+		String newString1 = preProcess(str1);
+		String newString2 = preProcess(str2);
+		String finalString1 = "";
+		String finalString2 = "";
+	//remove spaces
+	for (int i = 0 ; i < newString1.length() ; i++){
+		if (newString1.charAt(i) != 32){
+			finalString1 = finalString1 + newString1.charAt(i);
+		}
+	}
+	for (int i = 0 ; i < newString2.length() ; i++){
+		if (newString2.charAt(i) != 32){
+			finalString2 = finalString2 + newString2.charAt(i);
+		}
+
+	}
+
+		if(finalString1.length() != finalString2.length()){
+			return false;
+		}
+		
+		for (int i = 0; i < finalString1.length(); i++) {
+			boolean foundMatch = false;
+			for (int j = 0; j < finalString1.length(); j++) {
+				if(finalString1.charAt(i)==finalString2.charAt(j)){
+					finalString2.replace(finalString2.charAt(j), ' ');
+					foundMatch = true;
+					break;
+				}
+			}
+			if (!foundMatch) {
+				return false; 
+			}
+		}
+
+		return true;
+	}
 
 	
 	   

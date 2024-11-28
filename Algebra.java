@@ -232,7 +232,25 @@ public static int pow(int x, int n) {
 	
 	// Returns the integer part of sqrt(x) 
 	public static int sqrt(int x) {
-		// Replace the following statement with your code
-		return 0;
+		if(x==0){
+			return 0;
+			
+		}if(x==1){
+			return 1;
+
+		}
+		else{
+			int result = 0;
+			for(int i = 1; i <= div(x,2);i++ ){
+				int square = times(i, i);
+				if(square>x){
+					return result;
+				}
+				result= i;
+			}
+			return result;
+		}
+	
+		
 	}	  	  
 }
